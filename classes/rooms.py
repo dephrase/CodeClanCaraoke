@@ -45,9 +45,9 @@ class Room:
                 return "Whoo!"
         return "Boo!"
 
-        #Add a bar class
-        #Bar has an empty list of drinks(dictionarys)
-        #Bar has an add drink class, which adds a drink object to the dictionary
-        #Drink is the key of the dictionary, value is the amount remaining
-        #Room has a take order method
-        #Take order method will take a list of dictionarys, key is drink name, value is amount
+    def order_drink(self, guest, drink, bar):
+        if guest.wallet > drink.price:
+            guest.wallet -= drink.price
+            self.total_cash += drink.price
+            bar.stock[drink] -= 1
+            

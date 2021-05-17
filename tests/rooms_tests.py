@@ -2,6 +2,8 @@ import unittest
 from classes.rooms import *
 from classes.guests import *
 from classes.songs import *
+from classes.drinks import *
+from classes.bars import *
 from tests.rooms_tests import *
 
 class TestRoom(unittest.TestCase):
@@ -91,3 +93,14 @@ class TestRoom(unittest.TestCase):
         self.song = Song("Happy Birthday")
         self.room.addSong(self.song)
         self.assertEqual("Boo!", self.room.room_has_favourite_song(self.guest))
+
+    def test_customer_can_order_a_drink_integration_test(self):
+        self.guest = Guest("Ben", 50, "Purple Rain")
+        self.drink = Drink("Peroni", 5)
+        self.bar = Bar("Main Bar")
+        self.newRoom = Room("DrinkRoom", 10, 10)
+        self.bar.add_drink_to_stock(self.drink, 50)
+        self.newRoom.order_drink(self.guest, self.drink, self.bar)
+        self.assertEqual(49, self.bar.stock[self.drink])
+        self.assertEqual(45, self.guest.wallet)
+        self.assertEqual(5, self.newRoom.total_cash)
