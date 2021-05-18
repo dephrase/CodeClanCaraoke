@@ -59,12 +59,8 @@ class TestBar(unittest.TestCase):
         self.assertEqual(1, self.bar.tab[self.drink])
         self.assertEqual(1, self.bar.tab[self.drink2])
 
-    # def test_request_bar_tab_returns_total_cost_of_drinks(self):
-    #     self.guest = Guest("Ben", 50, "Purple Rain")
-    #     self.drink = Drink("Peroni", 5)
-    #     self.newRoom = Room("DrinkRoom", 10, 10)
-    #     self.bar.add_drink_to_stock(self.drink, 50)
-    #     self.bar.order_drink(self.drink)
-    #     self.bar.order_drink(self.drink)
-    #     self.assertEqual(10, self.bar.request_tab(self.newRoom))
+    def test_room_can_start_a_tab(self):
+        self.newRoom = Room("New Room", 10, 5)
+        self.bar.start_tab(self.newRoom)
+        self.assertEqual(False, bool(self.bar.tab_list[self.newRoom.name]))
         
