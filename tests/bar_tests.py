@@ -22,3 +22,6 @@ class TestBar(unittest.TestCase):
         self.bar.add_drink_to_stock(self.drink, 50)
         self.bar.add_drink_to_stock(self.drink, 50)
         self.assertEqual(100, self.bar.stock[self.drink])
+
+    def test_bar_has_empty_tab(self):
+        self.assertEqual(0, len(self.bar.tab))

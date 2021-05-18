@@ -46,8 +46,9 @@ class Room:
         return "Boo!"
 
     def order_drink(self, guest, drink, bar):
-        if guest.wallet > drink.price:
-            guest.wallet -= drink.price
-            self.total_cash += drink.price
-            bar.stock[drink] -= 1
+        if drink in bar.stock.keys():
+            if drink in bar.tab.keys():
+                bar.tab[drink] += 1
+            else:
+                bar.tab[drink] = 1
             

@@ -2,6 +2,7 @@ class Bar:
     def __init__(self, name):
         self.name = name
         self.stock = {}
+        self.tab = {}
 
     def add_drink_to_stock(self, drink, stockToAdd):
         if drink in self.stock.keys():
