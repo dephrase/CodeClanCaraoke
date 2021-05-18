@@ -11,18 +11,13 @@ class Bar:
         else:
             self.stock[drink] = stockToAdd
 
-    def order_drink(self, drink):
+    def order_drink(self, drink, room):
         if drink in self.stock.keys():
-            if drink in self.tab.keys():
-                self.tab[drink] += 1
+            if drink in self.tab_list[room.name].keys():
+                self.tab_list[room.name][drink] += 1
             else:
-                self.tab[drink] = 1
+                self.tab_list[room.name][drink] = 1
 
     def start_tab(self, room):
         if not room.name in self.tab_list.keys():
             self.tab_list[room.name] = {}
-
-    # def request_tab(self, bar):
-    #     total_cost = 0
-    #     for drink in bar.tab:
-    #         pass
