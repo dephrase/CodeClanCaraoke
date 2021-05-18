@@ -44,11 +44,3 @@ class Room:
             if song.name == guest.favourite_song:
                 return "Whoo!"
         return "Boo!"
-
-    def order_drink(self, guest, drink, bar):
-        if drink in bar.stock.keys():
-            if drink in bar.tab.keys():
-                bar.tab[drink] += 1
-            else:
-                bar.tab[drink] = 1
-            
