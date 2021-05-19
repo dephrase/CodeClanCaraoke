@@ -26,7 +26,9 @@ class TestBar(unittest.TestCase):
         self.assertEqual(100, self.bar.stock[self.drink])
 
     def test_bar_has_empty_tab(self):
-        self.assertEqual(0, len(self.bar.tab))
+        self.newRoom = Room("New Room", 5, 5)
+        self.bar.start_tab(self.newRoom)
+        self.assertEqual(False, bool(self.bar.tab_list[self.newRoom.name]))
 
     def test_customer_can_order_a_drink_and_add_to_bar_tab(self):
         self.guest = Guest("Ben", 50, "Purple Rain")
@@ -35,7 +37,7 @@ class TestBar(unittest.TestCase):
         self.bar.add_drink_to_stock(self.drink, 50)
         self.bar.start_tab(self.newRoom)
         self.bar.order_drink(self.drink, self.newRoom)
-        self.assertEqual(1, self.bar.tab[self.drink])
+        self.assertEqual(1, self.bar.tab_list[self.newRoom.name][self.drink])
         self.assertEqual(50, self.guest.wallet)
         self.assertEqual(0, self.newRoom.total_cash)
 
@@ -47,7 +49,7 @@ class TestBar(unittest.TestCase):
         self.bar.start_tab(self.newRoom)
         self.bar.order_drink(self.drink, self.newRoom)
         self.bar.order_drink(self.drink, self.newRoom)
-        self.assertEqual(2, self.bar.tab[self.drink])
+        self.assertEqual(2, self.bar.tab_list[self.newRoom.name][self.drink])
 
     def test_add_two_different_drinks_to_tab(self):
         self.guest = Guest("Ben", 50, "Purple Rain")
@@ -59,8 +61,8 @@ class TestBar(unittest.TestCase):
         self.bar.start_tab(self.newRoom)
         self.bar.order_drink(self.drink, self.newRoom)
         self.bar.order_drink(self.drink2, self.newRoom)
-        self.assertEqual(1, self.bar.tab[self.drink])
-        self.assertEqual(1, self.bar.tab[self.drink2])
+        self.assertEqual(1, self.bar.tab_list[self.newRoom.name][self.drink])
+        self.assertEqual(1, self.bar.tab_list[self.newRoom.name][self.drink2])
 
     def test_room_can_start_a_tab(self):
         self.newRoom = Room("New Room", 10, 5)
