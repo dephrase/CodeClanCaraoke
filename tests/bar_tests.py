@@ -11,7 +11,7 @@ class TestBar(unittest.TestCase):
     def test_bar_has_name(self):
         self.assertEqual("Main Bar", self.bar.name)
 
-    def test_bar_has_empty_list_of_drinks(self):
+    def test_bar_starts_with_empty_stock(self):
         self.assertEqual(0, len(self.bar.stock))
 
     def test_bar_can_add_drinks_to_stock(self):
